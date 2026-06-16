@@ -89,23 +89,27 @@
     </div>
 
     <script>
+        // Real-time conversion
         document.getElementById('usdt').addEventListener('input', (e) => {
             document.getElementById('grind').value = (e.target.value * 2).toLocaleString() + " $GRIND";
         });
+
         function openModal() { document.getElementById('paymentModal').classList.remove('hidden'); }
         function closeModal() { document.getElementById('paymentModal').classList.add('hidden'); }
 
-        const endTime = new Date("June 17, 2026 19:00:00").getTime();
+        // Live Timer: Ends June 18, 2026, 7:00 PM (UTC+6)
+        const endTime = new Date("June 18, 2026 19:00:00").getTime();
         const buyBtn = document.getElementById('buyBtn');
 
         setInterval(() => {
             const now = new Date().getTime();
             const diff = endTime - now;
             if (diff > 0) {
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById('timer').innerHTML = `${h}h ${m}m ${s}s Remaining`;
+                document.getElementById('timer').innerHTML = `${d}d ${h}h ${m}m ${s}s Remaining`;
             } else {
                 document.getElementById('timer').innerHTML = "PRE-SALE IS LIVE!";
                 buyBtn.disabled = false;
