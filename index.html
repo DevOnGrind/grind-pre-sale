@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$GRIND Official Presale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background-color: #050505; color: white; font-family: 'Segoe UI', sans-serif; }
+        .card { background: linear-gradient(145deg, #101010, #1a1a1a); border: 1px solid #333; }
+        .glow-blue { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+        .disabled-btn { background-color: #374151 !important; cursor: not-allowed; opacity: 0.6; }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <header class="max-w-4xl mx-auto text-center mb-12">
+        <div class="mb-6 flex justify-center">
+            <img src="logo.png" alt="GRIND Logo" class="w-24 h-24 rounded-full border-2 border-blue-500 shadow-lg object-cover">
+        </div>
+        <h1 class="text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">$GRIND PRE-SALE</h1>
+        <p class="text-gray-400 max-w-lg mx-auto">The $GRIND protocol is designed to fuel high-performance growth. Participate in our exclusive early-bird phase before we hit the open markets.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+        
+        <div class="space-y-8">
+            <div class="card p-8 rounded-3xl glow-blue">
+                <h2 class="text-2xl font-bold mb-6">Join Presale</h2>
+                <div id="timer" class="text-2xl font-mono text-cyan-400 mb-6 text-center font-bold">Loading...</div>
+                
+                <div class="space-y-4">
+                    <input type="number" id="usdt" placeholder="Amount in USDT (Max 100)" class="w-full bg-black p-4 rounded-xl border border-gray-700 outline-none">
+                    <input type="text" id="grind" readonly placeholder="You get $GRIND" class="w-full bg-black p-4 rounded-xl border border-gray-700 text-cyan-400 font-bold">
+                </div>
+                <button id="buyBtn" onclick="openModal()" class="w-full mt-6 bg-gray-600 py-4 rounded-xl font-bold transition disabled-btn" disabled>WAITING FOR START</button>
+            </div>
+
+            <div class="card p-6 rounded-3xl">
+                <h3 class="text-lg font-bold mb-4 text-blue-400"><i class="fas fa-shield-check mr-2"></i> Why Investors Trust Us</h3>
+                <ul class="text-sm text-gray-400 space-y-3">
+                    <li>✓ <strong>Verified Supply:</strong> Strict 10,000 $GRIND total cap to ensure scarcity.</li>
+                    <li>✓ <strong>Anti-Whale Protection:</strong> 100$ per user limit prevents market manipulation.</li>
+                    <li>✓ <strong>Escrow Refund:</strong> Funds are held safely; 100% refund available before launch.</li>
+                    <li>✓ <strong>Locked Liquidity:</strong> 60% of total tokens permanently locked for stability.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card p-8 rounded-3xl">
+            <h2 class="text-2xl font-bold mb-6">Tokenomics Details</h2>
+            <div class="space-y-4 text-sm">
+                <div class="flex justify-between border-b border-gray-800 pb-2"><span>Total Supply</span> <span class="text-blue-400 font-bold">10,000 $GRIND</span></div>
+                <div class="flex justify-between border-b border-gray-800 pb-2"><span>Presale Allocation</span> <span class="text-blue-400 font-bold">1,500 $GRIND</span></div>
+                <div class="flex justify-between border-b border-gray-800 pb-2"><span>Liquidity Pool</span> <span class="text-blue-400 font-bold">6,000 $GRIND</span></div>
+                <div class="flex justify-between border-b border-gray-800 pb-2"><span>Marketing & Ecosystem</span> <span class="text-blue-400 font-bold">2,000 $GRIND</span></div>
+                <div class="flex justify-between"><span>Development Fund</span> <span class="text-blue-400 font-bold">500 $GRIND</span></div>
+            </div>
+            <div class="mt-8 p-6 bg-blue-900/10 rounded-2xl border border-blue-900/30">
+                <p class="text-xs text-gray-400 leading-relaxed italic">The $GRIND economy is built on a deflationary model with limited supply. By locking 60% of the supply in the Liquidity Pool, we ensure a sustainable price floor for early participants.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-4xl mx-auto mt-12 py-8 border-t border-gray-800 text-center">
+        <div class="flex flex-wrap justify-center gap-8 text-gray-500 text-2xl">
+            <i class="fas fa-shield-alt" title="Audited"></i>
+            <i class="fas fa-lock" title="Locked Liquidity"></i>
+            <i class="fas fa-check-circle" title="Verified"></i>
+            <i class="fas fa-hand-holding-usd" title="Refund Ready"></i>
+        </div>
+        <p class="text-gray-600 mt-4 text-xs">© 2026 $GRIND Protocol. Committed to transparency and long-term value.</p>
+    </footer>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center p-4">
+        <div class="card p-8 rounded-3xl w-full max-w-md">
+            <h2 class="text-xl font-bold mb-4 text-blue-400">Complete Purchase</h2>
+            <form action="https://formspree.io/f/xykavnaw" method="POST" class="space-y-4">
+                <p class="text-sm text-gray-400">Send USDT (TRC20) to this address:</p>
+                <div class="text-white font-mono bg-slate-900 p-3 break-all text-center rounded border border-blue-500">TUPyTedeYHSmR2ZSSo7qocAfZC8kRmZTai</div>
+                <input type="email" name="email" placeholder="Your Email" required class="w-full bg-black p-3 rounded-lg border border-gray-700">
+                <input type="text" name="tx_hash" placeholder="Transaction ID / Hash" required class="w-full bg-black p-3 rounded-lg border border-gray-700">
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-500 py-3 rounded-lg font-bold">Submit Order</button>
+                <button type="button" onclick="closeModal()" class="w-full text-gray-500 text-sm mt-2">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('usdt').addEventListener('input', (e) => {
+            document.getElementById('grind').value = (e.target.value * 2).toLocaleString() + " $GRIND";
+        });
+        function openModal() { document.getElementById('paymentModal').classList.remove('hidden'); }
+        function closeModal() { document.getElementById('paymentModal').classList.add('hidden'); }
+
+        const endTime = new Date("June 17, 2026 19:00:00").getTime();
+        const buyBtn = document.getElementById('buyBtn');
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = endTime - now;
+            if (diff > 0) {
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById('timer').innerHTML = `${h}h ${m}m ${s}s Remaining`;
+            } else {
+                document.getElementById('timer').innerHTML = "PRE-SALE IS LIVE!";
+                buyBtn.disabled = false;
+                buyBtn.classList.remove('disabled-btn');
+                buyBtn.classList.add('bg-blue-600');
+                buyBtn.innerHTML = "CONNECT WALLET & BUY";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
